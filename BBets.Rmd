@@ -39,6 +39,34 @@ There are 3 questions and there should be at least 3 separate commits, at least 
 # What size of class makes the 2:1 bet fair?  
 <!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
+```{r}
+birthdays=1:365
+saveanswer=vector("numeric")
+for(j in 1:1000){
+
+
+savebank=0
+for(i in 1:637){
+classsample<-sample(birthdays,29,replace = TRUE)
+d<-duplicated(classsample)
+# If we add up d and get a number greater than zero, then we had responses with the same birthday.
+if(sum(d)>0){
+savebank=savebank+1
+}else{
+  savebank=savebank-2
+}
+}
+saveanswer[j]<-savebank
+}
+```
+```{r}
+hist(saveanswer)
+ssanswer<-sort(saveanswer)
+print(ssanswer[25])
+print(ssanswer[975])
+```
+
+A class size of about 28 or 29 would make the bet fair.
 
 # In the class and payoff as described what is a 95% confidence interval for Brownlow's earnings?
   
